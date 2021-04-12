@@ -10,15 +10,23 @@ type Camera =
       direction: Quaternion // yaw, pitch, roll
       viewAngle: Vector3 } // horizontal, vertical, distance
 
-let moveCamera (cam: Camera) (origin: Vector3): Camera = { cam with origin = origin }
+module Camera =
+    let init (origin: Vector3) (direction: Quaternion) (viewAngle: Vector3) =
+        { origin = origin
+          direction = direction
+          viewAngle = viewAngle }
 
-let castRay (camera: Camera) (pixel: Vector2): Ray =
-    let horizontalAngle =
-        MathF.Atan2(pixel.X * camera.viewAngle.X, camera.viewAngle.Z)
+    let moveCamera (camera: Camera) (origin: Vector3): Camera = { camera with origin = origin }
 
-    let verticalAngle =
-        MathF.Atan2(pixel.Y * camera.viewAngle.Y, camera.viewAngle.Z)
+    let castRay (camera: Camera) (pixel: Vector2): Ray =
+        let horizontalAngle =
+            MathF.Atan2(pixel.X * camera.viewAngle.X, camera.viewAngle.Z)
 
-    { origin = camera.origin
-      direction = camera.direction * Quaternion.CreateFromYawPitchRoll(horizontalAngle, verticalAngle, 0.0f)
-      color = SpectralColor.initOne }
+        let verticalAngle =
+            MathF.Atan2(pixel.Y * camera.viewAngle.Y, camera.viewAngle.Z)
+
+        { origin = camera.origin
+          direction =
+              camera.direction
+              * Quaternion.CreateFromYawPitchRoll(horizontalAngle, verticalAngle, 0.0f)
+          color = SpectralColor.initOne }
