@@ -28,5 +28,5 @@ module Camera =
         { origin = camera.origin
           direction =
               camera.direction
-              * Quaternion.CreateFromYawPitchRoll(horizontalAngle, verticalAngle, 0.0f)
+              * Quaternion.CreateFromYawPitchRoll(horizontalAngle, -verticalAngle, 0.0f)
           color = SpectralColor.initOne }
