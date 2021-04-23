@@ -5,11 +5,8 @@ open Color
 
 type Ray =
     { origin: Vector3
-      direction: Quaternion
+      direction: Vector3
       color: SpectralColor }
 
 module Ray =
-    let at (distance: float32) (ray: Ray): Vector3 =
-        Vector3.Transform(Vector3.UnitZ, ray.direction)
-        * distance
-        + ray.origin
+    let at (ray: Ray) (distance: float32): Vector3 = ray.direction * distance + ray.origin
