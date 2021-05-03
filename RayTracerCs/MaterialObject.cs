@@ -8,7 +8,7 @@ namespace RayTracerCs
         public MaterialObject(
             Vector3 origin,
             Quaternion rotation,
-            IEnumerable<Triangle> triangles,
+            List<Triangle> triangles,
             SpectralColor color
         ) : base(origin, rotation, triangles)
         {

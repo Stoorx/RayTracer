@@ -8,7 +8,7 @@ namespace RayTracerCs
 {
     public class TracerObject
     {
-        public TracerObject(Vector3 origin, Quaternion rotation, IEnumerable<Triangle> triangles)
+        public TracerObject(Vector3 origin, Quaternion rotation, List<Triangle> triangles)
         {
             Origin = origin;
             Rotation = rotation;
@@ -17,9 +17,9 @@ namespace RayTracerCs
 
         public Vector3 Origin { get; }
         public Quaternion Rotation { get; }
-        public IEnumerable<Triangle> Triangles { get; }
+        public List<Triangle> Triangles { get; }
 
-        public IEnumerable<Triangle> TranslateToWorld()
+        public List<Triangle> TranslateToWorld()
         {
             return Triangles.Select(t => t.Translate(Origin, Rotation)).ToList();
         }

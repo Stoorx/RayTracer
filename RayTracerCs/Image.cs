@@ -7,7 +7,7 @@ namespace RayTracerCs
 {
     public class Image
     {
-        Image(uint w, uint h)
+        public Image(uint w, uint h)
         {
             var pixels = new SpectralColor[w, h];
             for (int i = 0; i < w; i++)
