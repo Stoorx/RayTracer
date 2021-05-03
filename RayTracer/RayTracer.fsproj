@@ -9,6 +9,13 @@
         <Compile Include="Color.fs" />
         <Compile Include="Ray.fs" />
         <Compile Include="Camera.fs" />
+        <Compile Include="Geometry.fs" />
+        <Compile Include="TracerObject.fs" />
+        <Compile Include="LightSource.fs" />
+        <Compile Include="MaterialObject.fs" />
+        <Compile Include="Scene.fs" />
+        <Compile Include="Image.fs" />
+        <Compile Include="HDRPrinter.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
 
