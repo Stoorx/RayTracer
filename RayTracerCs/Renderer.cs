@@ -27,14 +27,19 @@ namespace RayTracerCs
                 for (uint j = 0; j < h; j++)
                 {
                     var ray = Camera.CastRay(new Vector2(2.0f * ((float) i / w) - 1f, -(2.0f * ((float) j / h) - 1f)));
-                    var (firstHittedTriangle, hitPoint) =
+                    var hitTuple =
                         allTriangles
                             .Select(triangle => new Tuple<Triangle, Vector3?>(triangle, triangle.Hit(ray)))
                             .Where(hit => hit.Item2.HasValue)
                             .Select(hit => new Tuple<Triangle, Vector3>(hit.Item1, hit.Item2.Value))
                             .OrderBy(hit => (hit.Item2 - Camera.Origin).LengthSquared())
-                            .First();
+                            .ToArray();
+                    if (hitTuple.Length == 0)
+                    {
+                        continue;
+                    }
 
+                    var (firstHittedTriangle, hitPoint) = hitTuple[0];
                     var triangleOwner = firstHittedTriangle.Owner;
                     switch (triangleOwner)
                     {
