@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace RayTracerCs
 {
-    public struct Triangle
+    public class Triangle
     {
         public Triangle(Vector3 a, Vector3 b, Vector3 c, TracerObject owner = null)
         {
@@ -16,7 +16,7 @@ namespace RayTracerCs
         public Vector3 A { get; }
         public Vector3 B { get; }
         public Vector3 C { get; }
-        public TracerObject Owner { get; }
+        public TracerObject Owner { get; set; }
 
         public Vector3 Cross() => Vector3.Cross(B - A, C - A);
         public Vector3 Normal() => Vector3.Normalize(Cross());

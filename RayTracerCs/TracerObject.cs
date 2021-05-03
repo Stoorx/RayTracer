@@ -13,6 +13,10 @@ namespace RayTracerCs
             Origin = origin;
             Rotation = rotation;
             Triangles = triangles;
+            for (int i = 0; i < Triangles.Count; i++)
+            {
+                Triangles[i].Owner = this;
+            }
         }
 
         public Vector3 Origin { get; }

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace RayTracerCs
 {
@@ -12,9 +13,13 @@ namespace RayTracerCs
             sb.AppendLine($"{w.ToString()} {h.ToString()}");
             lock (image)
             {
-                foreach (var spectralColor in image.Pixels)
+                for (int r = 0; r < h; r++)
                 {
-                    sb.AppendJoin(", ", spectralColor.Values).AppendLine();
+                    for (int c = 0; c < w; c++)
+                    {
+                        var color = image.Pixels[c, r];
+                        sb.AppendLine(String.Join(':', color.Values));
+                    }
                 }
             }
 
